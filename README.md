@@ -1,8 +1,8 @@
 # 数字化知识重生计划 (Digital Knowledge Rebirth Project)
 
-[![license](https://img.shields.io/github/license/YOUR_USERNAME/YOUR_REPOSITORY)](./LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/YOUR_USERNAME/YOUR_REPOSITORY)](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/issues)
-[![GitHub last commit](https://img.shields.io/github/last-commit/YOUR_USERNAME/YOUR_REPOSITORY)](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/commits/main)
+[![license](https://img.shields.io/github/license/fud114514/AI-OCR-BOOK)](./LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/fud114514/AI-OCR-BOOK)](https://github.com/fud114514/AI-OCR-BOOK/issues)
+[![GitHub last commit](https://img.shields.io/github/last-commit/fud114514/AI-OCR-BOOK)](https://github.com/fud114514/AI-OCR-BOOK/commits/main)
 
 **一个致力于将扫描版文档从静态图像“复活”为高质量、结构化、语义化的动态知识库的AI驱动项目。**
 
@@ -33,38 +33,41 @@
             *   **标题注解合并**：智能识别并合并标题行与其紧随其后的括号注解行，使版式更整洁、信息更连贯。
             *   **词条化重构**：对于词典、术语表或包含大量术语释义的文档，模型能自动识别“**术语 - 释义**”结构的段落，并将其重构为“`### 术语`”的标题和正文格式，极大地提升了文档的可用性。
 
-## ✨ 藏书特点
+## 📚 藏书格式与结构
 
-与简单的OCR文本文件或原始PDF相比，本仓库的文档具有以下优势：
+为了便于访问和使用，本仓库采用扁平化的根目录结构。每本书籍都提供两种核心格式：
+
+*   **`.md` (Markdown - 预处理源文件)**
+    *   **用途**：这是由AI工作流直接生成的、高质量的结构化源文本。它最适合用于**内容检索、文本复制、学术引用和二次开发**（例如，导入到Notion、Obsidian等笔记软件中构建个人知识库）。
+
+*   **`.epub` (EPUB - 完整阅读格式)**
+    *   **用途**：这是从优化后的Markdown源文件生成的标准电子书格式。它为在各种电子阅读器（如Kindle、Kobo）、平板和手机上获得**舒适、沉浸的阅读体验**而设计。
+
+**文件列表示例:**
+```
+.
+├── 伟大的思想家：蒯因 - L.汉肯森·内尔森.md      (用于检索、引用和二次处理的结构化源文本)
+├── 伟大的思想家：蒯因 - L.汉肯森·内尔森.epub    (为舒适阅读而生成的标准电子书)
+└── README.md
+```
+
+## ✨ 本库文档优势
 
 *   **高保真度**：得益于AI校对，文本错误率远低于常规OCR结果。
-*   **结构化与语义化**：所有文档均采用Markdown格式，拥有清晰的层级结构，而不仅仅是文字的堆砌。
-*   **易于检索与使用**：结构化的文本极易于全文搜索、复制、引用和进行二次开发（如制作电子书、导入笔记软件等）。
+*   **结构化与语义化**：所有文档均拥有清晰的层级结构，而不仅仅是文字的堆砌。
+*   **格式灵活**：同时提供 `.md` 和 `.epub` 两种格式，满足从深度分析到舒适阅读的多种需求。
+*   **易于检索与使用**：结构化的文本极易于全文搜索、复制、引用和进行二次开发。
 *   **版式精炼**：移除了所有与内容无关的干扰元素，提供纯净、专注的阅读体验。
-*   **持续优化**：这是一个持续进行的项目，我们会不断优化处理流程，并对已有的文档进行迭代更新。
-
-## 📚 仓库结构
-
-为了便于查找，本仓库内的书籍按以下结构进行组织：
-
-```
-/分类 (Category)
-│
-└── 📁 [具体书籍或主题名称]
-    │
-    └── 📄 BookName.md
-```
-
-例如，一本关于“哲学”的书籍可能会存放在 `Philosophy/Quine_On_Quine.md`。
 
 ## 🤝 如何贡献 (How to Contribute)
 
 我们欢迎并感谢社区的任何贡献！您可以通过以下方式帮助我们提升这个知识库的质量：
 
 1.  **报告勘误 (Reporting Errata)**
-    *   尽管我们的AI流程非常先进，但仍可能存在遗漏的错误。如果您在阅读中发现任何错别字、格式问题或重构错误，请通过[**提交一个Issue**](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/issues/new/choose)来告诉我们。
+    *   尽管我们的AI流程非常先进，但仍可能存在遗漏的错误。如果您在阅读中发现任何错别字、格式问题或重构错误，请通过[**提交一个Issue**](https://github.com/fud114514/AI-OCR-BOOK/issues/new/choose)来告诉我们。
     *   在提交Issue时，请尽可能提供以下信息：
         *   **书籍名称** (Book Title)
+        *   **文件格式** (请指明是在 `.md` 还是 `.epub` 文件中发现的问题)
         *   **章节/位置** (Chapter/Location)
         *   **错误原文** (Incorrect Text)
         *   **建议修正** (Suggested Correction)
@@ -84,7 +87,3 @@
 *   **署名 (BY)**：注明来源。
 *   **非商业性使用 (NC)**：不得用于商业目的。
 *   **相同方式共享 (SA)**：如果您基于此内容进行修改，必须以相同的许可协议进行分享。
-
----
-
-**请将 `YOUR_USERNAME/YOUR_REPOSITORY` 替换为您自己的GitHub用户名和仓库名。**
