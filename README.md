@@ -23,7 +23,7 @@
 
 #### 核心技术栈 (Core Technology Stack)
 
-1.  **通义千问 (Tongyi)**
+1.  **通义千问 (Tongyi Read)**
     *   **网址**: `https://www.tongyi.com/read`
     *   **角色定位**: **大规模文档预处理器 (Large-Scale Document Pre-processor)**。专用于对高复杂度、大体量的扫描PDF进行初始的版面分析（Layout Analysis）与文本数字化，为后续的精炼流程提供基线数据。
 
@@ -58,29 +58,23 @@
 
 2.  **深度语义精炼 (Gemini)**:
     *   将 `.md` 基线版本的全部内容复制到 `aistudio.google.com/`。
-    *   **注入核心指令集（Prompt）**，以约束模型行为并执行高级重构任务。
+    *   **注入下述核心指令集（Prompt）**，以约束模型行为并执行高级重构任务。
 
 **路径 B：针对中等复杂度文档的单阶段管线**
 
 1.  **一体化处理 (Gemini)**:
     *   在 `aistudio.google.com/` 直接上传中等复杂度PDF。
-    *   **注入相同的核心指令集（Prompt）**，进行端到端的处理。
-
-##### **处理流程决策图**
-```mermaid
-graph TD
-    A[Start: PDF Ingestion] --> B{Triage Protocol: Complexity Metrics};
-    B -- "High Complexity (>150 pages, etc.)" --> C[Path A: Initial Digitization via Tongyi];
-    C -- "Export Baseline .md" --> E[Deep Refinement via Gemini];
-    B -- "Moderate Complexity (<150 pages, etc.)" --> D[Path B: End-to-End Processing via Gemini];
-    D --> E;
-    E -- "Inject Core Prompt" --> F[Generate High-Fidelity .md];
-    F --> G[Post-Processing: QA & Transcoding];
-```
+    *   **注入下述核心指令集（Prompt）**，进行端到端的处理。
 
 ##### **第三步：指令工程 (Prompt Engineering)**
 
-这是决定输出质量与一致性的**核心控制机制**。我们为Gemini设计了一套详尽的“专家角色”指令（Prompt）。该指令通过零样本学习（Zero-shot Learning）的方式，精确定义了模型的任务目标、约束条件、处理规则（如术语-释义重构、标题注解合并等）及输出模式，确保了所有文档处理的标准化。
+这是决定输出质量与一致性的**核心控制机制**。我们为Gemini设计并开源了两套标准化的“专家角色”指令集（Prompt），用于精确控制模型的行为。根据文档的特性，我们会选择最合适的指令集。
+
+*   **[📄 Standard Prompt - 标准处理指令](Standard%20OCR%20Post-processing%20and%20Markdown%20Structuring%20Prompt.md)**: 
+    *   **用途**: 适用于大多数常规文档的处理，执行全面的校对、格式化和基础重构任务。
+
+*   **[📄 Expert Prompt - 专家级处理指令](Expert-level%20OCR%20Post-processing%20and%20Markdown%20Structuring%20Prompt.md)**: 
+    *   **用途**: 针对包含复杂元素（如词典、哲学论述、专业术语表）的文档，执行更深度的语义重构，如“词条化重构”和“标题注解合并”。
 
 ##### **第四步：后处理与终版生成**
 
@@ -98,14 +92,6 @@ graph TD
 
 *   **`.epub` (EPUB - 优化阅读格式)**
     *   **应用场景**: 作为标准电子出版物，专为在各类电子阅读终端上实现**最佳自适应版式与沉浸式阅读体验**而设计。
-
-**文件结构示例:**
-```
-.
-├── Book_Title.md      (Structured source text for computational use)
-├── Book_Title.epub    (Reflowable format optimized for reading)
-└── README.md
-```
 
 ## ✨ 技术优势 (Technical Advantages)
 
@@ -137,4 +123,4 @@ graph TD
 
 ## 📄 许可协议 (License)
 
-本项目产出的重构内容采用 **[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)** 许可协议，要求**署名**、**非商业性使用**和**相同方式共享**。
+本项目产出的重构内容采用 **[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)** 许可协议，要求**署名**、**非商业性使用**和**相同方式共享**的原则。
