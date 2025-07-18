@@ -1,89 +1,140 @@
 # 数字化知识重生计划 (Digital Knowledge Rebirth Project)
 
 [![license](https://img.shields.io/github/license/fud114514/AI-OCR-BOOK)](./LICENSE)
+[![Telegram](https://img.shields.io/badge/Telegram-交流群组-blue.svg?logo=telegram)](https://t.me/ProjectDigitalEternity)
 [![GitHub issues](https://img.shields.io/github/issues/fud114514/AI-OCR-BOOK)](https://github.com/fud114514/AI-OCR-BOOK/issues)
 [![GitHub last commit](https://img.shields.io/github/last-commit/fud114514/AI-OCR-BOOK)](https://github.com/fud114514/AI-OCR-BOOK/commits/main)
 
-**一个致力于将扫描版文档从静态图像“复活”为高质量、结构化、语义化的动态知识库的AI驱动项目。**
+**一个基于AI的知识工程项目，致力于将静态的扫描版文档，通过自动化处理管线，转化为动态、可计算且语义丰富的结构化知识库。**
 
 ---
 
-## 📖 项目使命 (Our Mission)
+## 📖 项目愿景 (Project Vision)
 
-许多宝贵的书籍和文档，特别是旧版或绝版资料，仅以扫描PDF的形式存在。这些文件如同“知识的监狱”，其内容难以被现代化的工具检索、编辑、引用或再利用。
+大量的学术文献、历史档案及绝版书籍，当前仅以非结构化的扫描PDF格式固化，形成了难以逾越的“信息孤岛”（Information Silos）。其内含的知识价值因无法被现代计算范式有效索引、解析或复用而受到极大限制。
 
-本项目的核心使命是**解放这些被囚禁的知识**。我们采用一个集成了**高精度AI OCR**与**大语言模型（LLM）**的先进处理流程，不仅将图像转换为文字，更对其进行深度的**校对、重构与精炼**，最终将每一份静态的扫描件，转化为结构清晰、内容无误、版式精美的Markdown格式电子书，使其知识价值在数字时代得以重生和流传。
+本项目的核心愿景在于**打破这些数字壁垒，实现知识的“计算再生”**。我们构建了一个集成了**高保真光学字符识别（High-Fidelity OCR）**与**大语言模型（LLM）**的自动化处理管线（Pipeline），旨在对原始图像数据进行深度的**文本萃取、语义解析、结构化重构与内容精炼**。其最终目标是，将每一份静态文档转化为一个动态、可计算、且语义丰富的Markdown知识实体，赋能下游的知识图谱构建、学术研究与二次开发。
 
-## 🔬 处理流程与核心技术
+---
 
-本仓库中的每一份文档都经过了以下严格且智能化的处理流程，以确保其达到最高的质量标准：
+## 🔬 方法论与标准化作业规程 (Methodology & SOP)
 
-1.  **高精度文本识别 (AI-Powered OCR)**
-    *   我们使用前沿的AI OCR引擎，对原始扫描件进行处理，以最大限度地保证文字识别的准确率，为后续的精炼步骤提供高质量的文本基础。
+本节详细阐述了用于生成本库内所有文档的标准化作业规程（Standard Operating Procedure, SOP）。此方法论旨在为数字人文（Digital Humanities）及知识工程领域的研究者与实践者，提供一套可复现、可扩展的技术路径。
 
-2.  **大语言模型智能精炼与重构 (LLM-Driven Refinement & Restructuring)**
-    *   这是本项目的核心增值环节。OCR提取的原始文本会被送入大语言模型，执行一系列超越简单格式转换的智能处理：
-        *   **上下文校对 (Contextual Proofreading)**：利用模型的语言理解能力，智能识别并修正OCR过程中常见的错别字（如将“深度学刁”修正为“深度学习”），并特别关注人名、地名、书名等专有名词的恢复。
-        *   **智能结构化 (Intelligent Structuring)**：自动识别原文的逻辑层级，如章节、子标题、列表、引文等，并应用标准的Markdown语法进行标记，形成清晰的文档结构。
-        *   **版式优化与去噪 (Layout Optimization & Denoising)**：
-            *   自动移除文档中的页眉、页脚及页码。
-            *   无缝拼接因换页而中断的段落和句子。
-            *   清理多余的空格和空行，统一中英文标点为全角（Markdown语法符号除外）。
-        *   **语义重构 (Semantic Restructuring)**：这是最具特色的智能处理，模型能够理解文本的内在逻辑并进行重构：
-            *   **标题注解合并**：智能识别并合并标题行与其紧随其后的括号注解行，使版式更整洁、信息更连贯。
-            *   **词条化重构**：对于词典、术语表或包含大量术语释义的文档，模型能自动识别“**术语 - 释义**”结构的段落，并将其重构为“`### 术语`”的标题和正文格式，极大地提升了文档的可用性。
+#### 核心技术栈 (Core Technology Stack)
 
-## 📚 藏书格式与结构
+1.  **通义千问 (Tongyi)**
+    *   **网址**: `https://www.tongyi.com/read`
+    *   **角色定位**: **大规模文档预处理器 (Large-Scale Document Pre-processor)**。专用于对高复杂度、大体量的扫描PDF进行初始的版面分析（Layout Analysis）与文本数字化，为后续的精炼流程提供基线数据。
 
-为了便于访问和使用，本仓库采用扁平化的根目录结构。每本书籍都提供两种核心格式：
+2.  **Gemini**
+    *   **网址**: `https://aistudio.google.com/`
+    *   **角色定位**: **核心语义处理与重构引擎 (Core Semantic Processing & Restructuring Engine)**。负责执行计算密集型的高阶自然语言处理（NLP）任务，包括但不限于上下文纠错、语义结构化以及基于特定规则的自动化重构。
 
-*   **`.md` (Markdown - 预处理源文件)**
-    *   **用途**：这是由AI工作流直接生成的、高质量的结构化源文本。它最适合用于**内容检索、文本复制、学术引用和二次开发**（例如，导入到Notion、Obsidian等笔记软件中构建个人知识库）。
+#### 完整处理管线 (The Processing Pipeline)
 
-*   **`.epub` (EPUB - 完整阅读格式)**
-    *   **用途**：这是从优化后的Markdown源文件生成的标准电子书格式。它为在各种电子阅读器（如Kindle、Kobo）、平板和手机上获得**舒适、沉浸的阅读体验**而设计。
+我们的流程是一个基于文档复杂度评估的决策系统。
 
-**文件列表示例:**
+##### **第一步：文档分流协议 (Triage Protocol)**
+
+根据源PDF的元数据与结构特征，决定其处理路径：
+
+*   **路径 A (双阶段管线)**:
+    *   **适用对象**: 具备高复杂度指标的文档，如**页数极大**（>150页）、**版式多栏混排**或**OCR信噪比低**。
+    *   **决策逻辑**: 规避单次处理可能引发的计算资源瓶颈与内容截断风险。“通义千问”作为预处理器，确保了大规模数字化任务的稳定性与完整性。
+
+*   **路径 B (单阶段管线)**:
+    *   **适用对象**: 复杂度指标适中的文档，如**页数可控**（<150页）、**版式统一**且**文本清晰**。
+    *   **决策逻辑**: Gemini的多模态输入能力足以应对此类任务，简化流程以提升效率。
+
+##### **第二步：执行路径 (Execution Pathways)**
+
+**路径 A：针对高复杂度文档的双阶段管线**
+
+1.  **初始数字化 (通义千问)**:
+    *   在 `tongyi.com/read` 上传高复杂度PDF。
+    *   执行其内置的OCR与版面分析。
+    *   **交付物**: 导出包含基础结构化信息的Markdown（`.md`）基线版本。
+
+2.  **深度语义精炼 (Gemini)**:
+    *   将 `.md` 基线版本的全部内容复制到 `aistudio.google.com/`。
+    *   **注入核心指令集（Prompt）**，以约束模型行为并执行高级重构任务。
+
+**路径 B：针对中等复杂度文档的单阶段管线**
+
+1.  **一体化处理 (Gemini)**:
+    *   在 `aistudio.google.com/` 直接上传中等复杂度PDF。
+    *   **注入相同的核心指令集（Prompt）**，进行端到端的处理。
+
+##### **处理流程决策图**
+```mermaid
+graph TD
+    A[Start: PDF Ingestion] --> B{Triage Protocol: Complexity Metrics};
+    B -- "High Complexity (>150 pages, etc.)" --> C[Path A: Initial Digitization via Tongyi];
+    C -- "Export Baseline .md" --> E[Deep Refinement via Gemini];
+    B -- "Moderate Complexity (<150 pages, etc.)" --> D[Path B: End-to-End Processing via Gemini];
+    D --> E;
+    E -- "Inject Core Prompt" --> F[Generate High-Fidelity .md];
+    F --> G[Post-Processing: QA & Transcoding];
+```
+
+##### **第三步：指令工程 (Prompt Engineering)**
+
+这是决定输出质量与一致性的**核心控制机制**。我们为Gemini设计了一套详尽的“专家角色”指令（Prompt）。该指令通过零样本学习（Zero-shot Learning）的方式，精确定义了模型的任务目标、约束条件、处理规则（如术语-释义重构、标题注解合并等）及输出模式，确保了所有文档处理的标准化。
+
+##### **第四步：后处理与终版生成**
+
+1.  **质量保证 (Quality Assurance)**: 对AI生成的Markdown文本进行人工抽样审核，验证结构完整性、关键术语准确性及格式合规性。
+2.  **格式转码 (Format Transcoding)**: 使用 **[Calibre](https://calibre-ebook.com/)** 或 **[Pandoc](https://pandoc.org/)** 等标准化工具，将经过验证的 `.md` 源文件转码为 `.epub` 格式，以实现跨平台兼容性。
+
+---
+
+## 📚 成果交付物 (Deliverables)
+
+本仓库为每部典籍提供两种标准格式的交付物：
+
+*   **`.md` (Markdown - 结构化源文本)**
+    *   **应用场景**: 作为可计算的源数据，适用于**数据挖掘、计算语言学分析、知识图谱注入、及个人知识管理系统（PKM）集成**。
+
+*   **`.epub` (EPUB - 优化阅读格式)**
+    *   **应用场景**: 作为标准电子出版物，专为在各类电子阅读终端上实现**最佳自适应版式与沉浸式阅读体验**而设计。
+
+**文件结构示例:**
 ```
 .
-├── 伟大的思想家：蒯因 - L.汉肯森·内尔森.md      (用于检索、引用和二次处理的结构化源文本)
-├── 伟大的思想家：蒯因 - L.汉肯森·内尔森.epub    (为舒适阅读而生成的标准电子书)
+├── Book_Title.md      (Structured source text for computational use)
+├── Book_Title.epub    (Reflowable format optimized for reading)
 └── README.md
 ```
 
-## ✨ 本库文档优势
+## ✨ 技术优势 (Technical Advantages)
 
-*   **高保真度**：得益于AI校对，文本错误率远低于常规OCR结果。
-*   **结构化与语义化**：所有文档均拥有清晰的层级结构，而不仅仅是文字的堆砌。
-*   **格式灵活**：同时提供 `.md` 和 `.epub` 两种格式，满足从深度分析到舒适阅读的多种需求。
-*   **易于检索与使用**：结构化的文本极易于全文搜索、复制、引用和进行二次开发。
-*   **版式精炼**：移除了所有与内容无关的干扰元素，提供纯净、专注的阅读体验。
+*   **高保真度 (High Fidelity)**: 通过LLM驱动的上下文纠错机制，显著降低了传统OCR的字符错误率（Character Error Rate, CER）。
+*   **语义结构化 (Semantic Structuring)**: 文档不仅具备物理版式结构，更通过标题层级、列表、引文等Markdown元素赋予了机器可读的语义层次。
+*   **双模态可用性 (Dual-Modality Availability)**: 提供`.md`源文件以支持数据分析，同时提供`.epub`格式以优化人类阅读体验。
+*   **增强的可访问性与互操作性 (Enhanced Accessibility & Interoperability)**: 结构化文本极大提升了内容的可发现性（Discoverability），并能无缝集成至各类知识管理系统与数据处理管线。
+*   **内容纯化 (Content Purification)**: 通过程序化移除页眉、页脚等版式噪声，提供专注于核心知识内容的纯净文本。
 
-## 🤝 如何贡献 (How to Contribute)
+## 🤝 社区贡献与协作 (Contribution & Collaboration)
 
-我们欢迎并感谢社区的任何贡献！您可以通过以下方式帮助我们提升这个知识库的质量：
+我们欢迎并感谢社区的任何形式的贡献。
 
-1.  **报告勘误 (Reporting Errata)**
-    *   尽管我们的AI流程非常先进，但仍可能存在遗漏的错误。如果您在阅读中发现任何错别字、格式问题或重构错误，请通过[**提交一个Issue**](https://github.com/fud114514/AI-OCR-BOOK/issues/new/choose)来告诉我们。
-    *   在提交Issue时，请尽可能提供以下信息：
-        *   **书籍名称** (Book Title)
-        *   **文件格式** (请指明是在 `.md` 还是 `.epub` 文件中发现的问题)
-        *   **章节/位置** (Chapter/Location)
-        *   **错误原文** (Incorrect Text)
-        *   **建议修正** (Suggested Correction)
+#### 1. 加入技术交流
+*   我们设立了一个Telegram群组，用于讨论文档处理技术、分享相关资源及优化工作流。
+*   **点击链接加入: [Project Digital Eternity on Telegram](https://t.me/ProjectDigitalEternity)**
 
-2.  **推荐书籍 (Suggesting Books)**
-    *   如果您有希望被“重生”的、具有重要价值的扫描版书籍，也欢迎通过Issue向我们推荐。
+#### 2. 提交勘误
+*   若发现文本或格式错误，请通过[**提交一个Issue**](https://github.com/fud114514/AI-OCR-BOOK/issues/new/choose)进行反馈。
+*   请在Issue中详细说明**书籍名称**、**文件格式**、**具体位置**及**修正建议**。
+
+#### 3. 提名处理对象
+*   欢迎通过Issue提名具有重要价值的扫描版文档，以纳入我们的处理队列。
 
 ## ⚠️ 免责声明 (Disclaimer)
 
-*   **版权**：本仓库的所有内容均来自公开的互联网资源，其数字化和重构仅为方便学术研究、知识检索和个人学习之用。我们坚决尊重原作者和出版商的版权。如果任何文档侵犯了您的权益，请立即联系我们，我们将第一时间处理并移除。
-*   **准确性**：我们致力于提供最准确的文本，但无法保证100%的无误。所有内容请以原版书籍为最终参考。
+*   **版权**: 本仓库所有内容均来自公开互联网资源，其数字化重构仅用于学术研究与个人学习。我们坚决尊重版权。若任何内容侵犯您的权益，请联系我们立即移除。
+*   **准确性**: 我们追求最高准确性，但无法保证100%无误。所有内容请以原版为最终依据。
 
 ## 📄 许可协议 (License)
 
-本仓库中的重构内容采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 许可协议。这意味着您可以自由地分享和修改，但必须：
-
-*   **署名 (BY)**：注明来源。
-*   **非商业性使用 (NC)**：不得用于商业目的。
-*   **相同方式共享 (SA)**：如果您基于此内容进行修改，必须以相同的许可协议进行分享。
+本项目产出的重构内容采用 **[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)** 许可协议，要求**署名**、**非商业性使用**和**相同方式共享**。
